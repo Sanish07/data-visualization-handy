@@ -6,7 +6,6 @@ import DoughnutChart from "./Charts/DoughnutChart";
 import LineChart from "./Charts/LineChart";
 import PieChart from "./Charts/PieChart";
 import PolarAreaChart from "./Charts/PolarAreaChart";
-import RadarChart from "./Charts/RadarChart";
 import ScatterChart from "./Charts/ScatterChart";
 
 const Main = () => {
@@ -29,6 +28,13 @@ const Main = () => {
 
   const handleCanvasBg = (e) =>{
     document.querySelector('#chart-canvas').style.background = e.target.value;
+  }
+
+  const handleDownload = (e) =>{
+    var download = document.getElementById("download");
+    var image = document.getElementById("chart-canvas").toDataURL("image/png")
+    .replace("image/png", "image/octet-stream");
+    download.setAttribute("href", image);
   }
 
   const handleTitleChange = (e) => {
@@ -90,6 +96,15 @@ const Main = () => {
   return (
     <>
       <h1 className={"head"}> Welcome to Data Visualization Tool. </h1>
+      {
+    chartConfig.chartType !== "" ?  
+    <div>
+    <a id="download" download="triangle.png" href="img-down">
+      <button type="button" onClick={handleDownload}>Download</button>
+    </a>
+    </div>: <></>
+
+   } 
       <div className="form-area">
 
       <label>Choose Chart Type : </label>
@@ -102,7 +117,6 @@ const Main = () => {
                <option value="pie">Pie Chart</option>
                <option value="line">Line Chart</option>
                <option value="polar-area">Polar Area Chart</option>
-               <option value="radar">Radar Chart</option>
                <option value="scatter">Scatter Chart</option>
              </select><br/>
              
@@ -139,7 +153,7 @@ const Main = () => {
              
              <label>Title Font-Size : </label>
              <input type="range" id="font-size" name="font-size"
-             min="12" max="40" onChange={handleTitleChange} />
+             min="12" max="40" onChange={handleTitleChange} value={chartConfig.fontSize}/>
              <br/>
    
              <label> Title Color : </label>
@@ -148,16 +162,16 @@ const Main = () => {
    
              <label>Title Font Weight : </label>
              <input type="range" id="title-weight" name="title-weight"
-             min="100" max="900" step="100" onChange={handleTitleChange} />
+             min="100" max="900" step="100" onChange={handleTitleChange} value={chartConfig.weight}/>
              <br/><br/>
    
              <label> Chart Background : </label>
-             <input id="bgcolor" name="bgcolor" type={"color"} onChange={handleCanvasBg} />
+             <input id="bgcolor" name="bgcolor" type={"color"} onChange={handleCanvasBg}/>
              <br/>
    
              <label> Chart Spacing : </label>
              <input type="range" id="chart-spacing" name="chart-spacing"
-             min="10" max="100" onChange={handleTitleChange} />
+             min="10" max="100" onChange={handleTitleChange} value={chartConfig.chartPadding}/>
              <br/><br/>
    
              <label>Data Labels : </label>
@@ -222,14 +236,12 @@ const Main = () => {
         : <></>
       }
       {
-        chartConfig.chartType === "radar" ? <RadarChart chartConfigData={chartConfig}/> 
-        : <></>
-      }
-      {
         chartConfig.chartType === "scatter" ? <ScatterChart chartConfigData={chartConfig}/> 
         : <></>
       }
     </div>
+
+  
     </>
   );
 };
