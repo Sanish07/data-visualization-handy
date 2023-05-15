@@ -7,6 +7,7 @@ import LineChart from "./Charts/LineChart";
 import PieChart from "./Charts/PieChart";
 import PolarAreaChart from "./Charts/PolarAreaChart";
 import ScatterChart from "./Charts/ScatterChart";
+import { Button } from '@mui/material';
 
 const Main = () => {
   const [chartConfig, setChartConfig] = useState({
@@ -95,18 +96,19 @@ const Main = () => {
 
   return (
     <>
-      <h1 className={"head"}> Welcome to Data Visualization Tool. </h1>
-      {
-    chartConfig.chartType !== "" ?  
-    <div>
-    <a id="download" download="triangle.png" href="img-down">
-      <button type="button" onClick={handleDownload}>Download</button>
-    </a>
-    </div>: <></>
-
-   } 
+      <div id="logo-area"><span>Handy</span> Visualize</div>
+      <div id="main-area">
       <div className="form-area">
-
+      <div id="chart-select">
+      {
+             chartConfig.chartType !== "" ?  
+             <div>
+             <a id="download" download="chart.png" href="img-down">
+               <Button type="button" variant="contained" color="success" size="small" onClick={handleDownload}>Download</Button>
+             </a>
+             </div>: <></>
+      } 
+      <br/>
       <label>Choose Chart Type : </label>
              <select id="chart-type" name="chart-type" onChange={handleTitleChange} defaultValue={""}>
                <option value=""> -- Select Chart Type -- </option>
@@ -119,10 +121,10 @@ const Main = () => {
                <option value="polar-area">Polar Area Chart</option>
                <option value="scatter">Scatter Chart</option>
              </select><br/>
-             
+        </div>    
         {chartConfig.chartType !== "" ? 
            <div className="static-data">
-             
+             <br/>
              <label>Chart Title : </label>
              <input
                type={"text"}
@@ -181,8 +183,8 @@ const Main = () => {
                name="data-label"
                value={chartConfig.dataLabel}
                onChange={handleTitleChange}
-             /> <br/>
-   
+             /> <br/><br/>
+  
              <label>Display Legend : </label>
              <input type="radio" id="visible" name="legend-vis" value="true" onChange={handleTitleChange}/>
              <label>Show</label>
@@ -203,8 +205,6 @@ const Main = () => {
            </div>
            : <></>
         }
-        <br />
-        
       </div>
     <div className="chart-container" id="chart-area">
       {
@@ -240,8 +240,7 @@ const Main = () => {
         : <></>
       }
     </div>
-
-  
+    </div>
     </>
   );
 };
