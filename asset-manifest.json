@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/data-visualization-handy/static/css/main.7b59732a.css",
+    "main.js": "/data-visualization-handy/static/js/main.238f72bf.js",
+    "static/js/787.ea663fcb.chunk.js": "/data-visualization-handy/static/js/787.ea663fcb.chunk.js",
+    "static/media/Billabong.ttf": "/data-visualization-handy/static/media/Billabong.0e94b13a1cfb505ff271.ttf",
+    "index.html": "/data-visualization-handy/index.html",
+    "main.7b59732a.css.map": "/data-visualization-handy/static/css/main.7b59732a.css.map",
+    "main.238f72bf.js.map": "/data-visualization-handy/static/js/main.238f72bf.js.map",
+    "787.ea663fcb.chunk.js.map": "/data-visualization-handy/static/js/787.ea663fcb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7b59732a.css",
+    "static/js/main.238f72bf.js"
+  ]
+}
